@@ -59,8 +59,7 @@ module.exports = function (grunt) {
             paths.src("core.js"),
             paths.tests("**/*.js"),
           ],
-          autoWatch: true,
-          singleRun: false,
+          singleRun: true,
           frameworks: ["jasmine"],
           browsers: ["PhantomJS"],
         }
