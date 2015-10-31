@@ -15,15 +15,20 @@ Include `unsplash-source.js` or `unsplash-source.min.js` in your page:
 ```js
 var photo = new SourcePhoto();
 
-photo.fromUser("erondu");
+photo.fromUser("erondu")
+     .width(2048)
+     .height(1200)
+     .build(); // => "https://source.unsplash.com/user/erondu/2048x1200/random"
 
-photo.width(2048);
-photo.height(1200);
+photo = new SourcePhoto();
 
-photo.build(); // => "https://source.unsplash.com/user/erondu/2048x1200/random"
+photo.find("oMpAz-DN-9I")
+     .build(); // => "https://source.unsplash.com/oMpAz-DN-9I"
 ```
 
 ## Development
+
+To contribute, make sure Node and NPM are installed. Then:
 
 ```sh
 // git clone
