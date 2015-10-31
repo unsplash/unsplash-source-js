@@ -2,12 +2,13 @@
 # Gruntfile
 ===========
 
-All up in your code building your javascripts and stuff
+All up in your code building your javascripts and stuff.
 
 Packages used:
  
   - JSHint
   - Karma
+  - Concat
 
  */
 
@@ -59,12 +60,17 @@ module.exports = function (grunt) {
             paths.tests("**/*.js"),
           ],
           autoWatch: true,
+          singleRun: false,
           frameworks: ["jasmine"],
           browsers: ["PhantomJS"],
         }
       }
     },
 
+    /*
+    ## Concat
+    https://github.com/gruntjs/grunt-contrib-concat
+     */
     concat: {
       options: {
         stripBanners: false,
