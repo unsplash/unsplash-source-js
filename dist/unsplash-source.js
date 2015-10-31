@@ -18,7 +18,7 @@ $$ |  $$ |$$ |  $$ | \____$$\ $$ |  $$ |$$ |$$  __$$ | \____$$\ $$ |  $$ |
 
   var SourcePhoto = function () {
     this.version = "1.0.0";
-    this.topLevelDomain = "https://source.unsplash.com/";
+    this.url = "https://source.unsplash.com";
     this.dimensions = {};
 
     return this;
@@ -73,6 +73,17 @@ $$ |  $$ |$$ |  $$ | \____$$\ $$ |  $$ |$$ |$$  __$$ | \____$$\ $$ |  $$ |
   };
 
   /**
+   * Limits the photos to a specific photographer
+   * @param  {String} username 
+   * @return {SourcePhoto}
+   */
+  SourcePhoto.prototype.fromUser = function (username) {
+    this.username = username;
+
+    return this;
+  };
+
+  /**
    * Returns true if the photo has dimensions set
    * @return {Boolean}
    */
@@ -80,22 +91,34 @@ $$ |  $$ |$$ |  $$ | \____$$\ $$ |  $$ |$$ |$$  __$$ | \____$$\ $$ |  $$ |
     return !!this.dimensions.width && !!this.dimensions.height;
   };
 
+  /**
+   * Appends the photo dimensions to the URL
+   * @return {String} the photo URL
+   */
+  SourcePhoto.prototype._appendDimensions = function () {
+    if (this._hasDimensions()) {
+      this.url += "/" + this.dimensions.width + "x" + this.dimensions.height;
+    }
+
+    return this.url;
+  };
 
   /**
    * Creates the URL based on the previous actions
    * @return {String} the photo URL
    */
   SourcePhoto.prototype.build = function () {
-    var url = this.topLevelDomain;
+    if (!!this.id) {
+      this.url += "/" + this.id;
+      this._appendDimensions();
+      return this.url;
 
-    if (this.id) {
-      url += this.id;
+    } else if (!!this.username) {
+      this.url += "/user/" + this.username;
+      this._appendDimensions();
+      this.url += "/random";
+      return this.url;
 
-      if (this._hasDimensions()) {
-        url += "/" + this.dimensions.width + "x" + this.dimensions.height;
-      }
-
-      return url;
     }
   };
 
