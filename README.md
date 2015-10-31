@@ -2,6 +2,8 @@
 
 A javascript wrapper for the Unsplash Source API. Get Unsplash random photos by keyword, category, user, or ID.
 
+[ ![Codeship Status for CrewLabs/unsplash-source-js](https://codeship.com/projects/668ef1e0-6255-0133-355b-1af77e49650b/status?branch=master)](https://codeship.com/projects/112623)
+
 ## Usage
 
 Include `unsplash-source.js` or `unsplash-source.min.js` in your page:
@@ -23,7 +25,7 @@ photo.build(); // => "https://source.unsplash.com/user/erondu/2048x1200/random"
 
 ## Development
 
-```
+```sh
 // git clone
 
 npm install
