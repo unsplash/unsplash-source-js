@@ -1,4 +1,4 @@
-/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2015-10-31 
+/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2015-11-01 
 
 $$\   $$\                               $$\                     $$\       
 $$ |  $$ |                              $$ |                    $$ |      
@@ -20,6 +20,7 @@ $$ |  $$ |$$ |  $$ | \____$$\ $$ |  $$ |$$ |$$  __$$ | \____$$\ $$ |  $$ |
     this.version = "1.0.0";
     this.url = "https://source.unsplash.com";
     this.dimensions = {};
+    this.randomizationInterval = null;
 
     return this;
   };
@@ -73,12 +74,40 @@ $$ |  $$ |$$ |  $$ | \____$$\ $$ |  $$ |$$ |$$  __$$ | \____$$\ $$ |  $$ |
   };
 
   /**
+   * Sets the randomization interval
+   *
+   * Note: only accepts three possible values (null, daily, or weekly)
+   * @param  {String} interval
+   * @return {SourcePhoto}
+   */
+  SourcePhoto.prototype.randomize = function (interval) {
+    if (interval == 'daily' || interval == 'weekly') {
+      this.randomizationInterval = interval;
+    } else {
+      this.randomizationInterval = null;
+    }
+
+    return this;
+  };
+
+  /**
    * Limits the photos to a specific photographer
    * @param  {String} username 
    * @return {SourcePhoto}
    */
   SourcePhoto.prototype.fromUser = function (username) {
     this.username = username;
+
+    return this;
+  };
+
+  /**
+   * Limits the photos to a specific category
+   * @param  {String} category
+   * @return {SourcePhoto}
+   */
+  SourcePhoto.prototype.fromCategory = function (category) {
+    this.category = category;
 
     return this;
   };
@@ -104,6 +133,22 @@ $$ |  $$ |$$ |  $$ | \____$$\ $$ |  $$ |$$ |$$  __$$ | \____$$\ $$ |  $$ |
   };
 
   /**
+   * Appends the randomization interval to the URL
+   * @return {[type]} [description]
+   */
+  SourcePhoto.prototype._appendRandomization = function () {
+    this.url += "/random";
+
+    if (this.randomizationInterval == 'daily') {
+      this.url += ",daily";
+    } else if (this.randomizationInterval == 'weekly') {
+      this.url += ",weekly";
+    }
+
+    return this.url;
+  };
+
+  /**
    * Creates the URL based on the previous actions
    * @return {String} the photo URL
    */
@@ -116,7 +161,18 @@ $$ |  $$ |$$ |  $$ | \____$$\ $$ |  $$ |$$ |$$  __$$ | \____$$\ $$ |  $$ |
     } else if (!!this.username) {
       this.url += "/user/" + this.username;
       this._appendDimensions();
-      this.url += "/random";
+      this._appendRandomization();
+      return this.url;
+
+    } else if (!!this.category) {
+      this.url += "/category/" + this.category;
+      this._appendDimensions();
+      this._appendRandomization();
+      return this.url;
+
+    } else {
+      this._appendDimensions();
+      this._appendRandomization();
       return this.url;
 
     }
