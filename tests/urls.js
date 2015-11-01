@@ -77,70 +77,80 @@ describe("SourcePhotos", function () {
   });
 
   describe("#build", function () {
-    it("returns a specific photo", function () {
-      var photo = new SourcePhoto();
 
-      photo.find("6hxvm0NzYP8");
+    describe("returns a specific photo", function () {
+      var photo;
 
-      expect(photo.build()).toEqual("https://source.unsplash.com/6hxvm0NzYP8");
+      beforeEach(function () {
+        photo = new SourcePhoto();
+        photo.find("6hxvm0NzYP8");
+      });
+
+      it("", function () {
+        expect(photo.build()).toEqual("https://source.unsplash.com/6hxvm0NzYP8");
+      });
+
+      it("with dimensions", function () {
+        photo.size(200, 100);
+
+        expect(photo.build()).toEqual("https://source.unsplash.com/6hxvm0NzYP8/200x100");
+      });
     });
 
-    it("returns a specific photo with dimensions", function () {
-      var photo = new SourcePhoto();
+    describe("returns a random photo from a user", function () {
+      var photo;
 
-      photo.find("6hxvm0NzYP8");
-      photo.size(200, 100);
+      beforeEach(function () {
+        photo = new SourcePhoto();
+        photo.fromUser("crew");
+      });
 
-      expect(photo.build()).toEqual("https://source.unsplash.com/6hxvm0NzYP8/200x100");
+      it("", function () {
+        expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/random");
+      });
+
+      it("with dimensions", function () {
+        photo.size(200, 100);
+
+        expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/200x100/random");
+      });
     });
 
-    it("returns a random photo from a user", function () {
-      var photo = new SourcePhoto();
+    describe("returns a random photo from a category", function () {
+      var photo;
 
-      photo.fromUser("crew");
+      beforeEach(function () {
+        photo = new SourcePhoto();
+        photo.fromCategory("buildings");
+      });
 
-      expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/random");
+      it("", function () {
+        expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/random");
+      });
+
+      it("with dimensions", function () {
+        photo.size(200, 100);
+
+        expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/200x100/random");
+      });
     });
 
-    it("returns a random photo from a user with dimensions", function () {
-      var photo = new SourcePhoto();
+    describe("returns a random photo", function () {
+      var photo;
 
-      photo.fromUser("crew");
-      photo.size(200, 100);
+      beforeEach(function () {
+        photo = new SourcePhoto();
+      });
 
-      expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/200x100/random");
-    });
+      it("", function () {
+        expect(photo.build()).toEqual("https://source.unsplash.com/random");
+      });
 
-    it("returns a random photo from a category", function () {
-      var photo = new SourcePhoto();
+      it("with dimensions", function () {
+        photo.size(200,100);
 
-      photo.fromCategory("buildings");
-
-      expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/random");
-    });
-
-    it("returns a random photo from a category with dimensions", function () {
-      var photo = new SourcePhoto();
-
-      photo.fromCategory("buildings");
-      photo.size(200, 100);
-
-      expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/200x100/random");
-    });
-
-    it("returns a random photo", function () {
-      var photo = new SourcePhoto();
-
-      expect(photo.build()).toEqual("https://source.unsplash.com/random");
-    });
-
-    it("returns a random photo with dimensions", function () {
-      var photo = new SourcePhoto();
-
-      photo.size(200,100);
-
-      expect(photo.build()).toEqual("https://source.unsplash.com/200x100/random");
+        expect(photo.build()).toEqual("https://source.unsplash.com/200x100/random");
+      });
     });
   });
-
 });
