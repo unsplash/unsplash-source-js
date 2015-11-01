@@ -65,7 +65,7 @@ if (!Array.isArray) {
   };
 
   /**
-   * Shorthand for setting the image dimensions
+   * Shorthand for setting the photo dimensions
    * @param  {Int} width
    * @param  {Int} height (optional)
    * @return {SourcePhoto}
@@ -97,7 +97,7 @@ if (!Array.isArray) {
   };
 
   /**
-   * Limits the photo to having tags matching the keywords
+   * Limits the photo to having tags or locations matching the keywords
    * @param  {[Array || String]} keywords
    * @return {SourcePhoto}
    */
