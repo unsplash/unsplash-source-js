@@ -23,7 +23,7 @@ Method | Arguments | Example | Description
 `randomize`|`null || "daily" || "weekly"`|`photo.randomize("weekly")`|Sets the randomization interval
 `fromUser`|`"username"`|`photo.fromUser("erondu")`|Limits to a specific photographer
 `fromCategory`|`"category"`|`photo.fromCategory("nature")`|Limits to a specific category
-`withKeywords`|`"dog" || ["dog", "black"]`|`photo.withKeywords("dog")`|Limits to tags or locations matching the keywords
+`withKeywords`|`"keyword" || [arrayOfKeywords]`|`photo.withKeywords("dog")`|Limits to tags or locations matching the keywords
 `build`||`photo.build()`|Returns the configured URL.
 
 *Note*: Not all methods are compatible with each other. For example, trying to randomize a specific photo doesn't make sense. The wrapper will ignore incompatible methods and only construct URLs compatible with the Unsplash Source API.
