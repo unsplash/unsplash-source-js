@@ -9,6 +9,7 @@ Packages used:
   - JSHint
   - Karma
   - Concat
+  - Uglify
 
  */
 
@@ -88,14 +89,34 @@ module.exports = function (grunt) {
       },
     },
 
+    /*
+    ## Uglify
+
+     */
+    uglify: {
+      options: {
+        stripBanners: true,
+        banner: "/*! https://unsplash.com <%= pkg.name %> - v<%= pkg.version %> - " +
+        "<%= grunt.template.today('yyyy-mm-dd') %> " + "*/\n\n"
+      },
+
+      js: {
+        files: [{
+          src: paths.dist("unsplash-source.js"),
+          dest: paths.dist("unsplash-source.min.js")
+        }],
+      },
+    },
+
   });
 
   // Load development plugins
   grunt.loadNpmTasks("grunt-notify");
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-contrib-concat");
+  grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks('grunt-karma');
 
-  grunt.registerTask("build", ["concat"]);
+  grunt.registerTask("build", ["concat", "uglify"]);
   grunt.registerTask("test", ["jshint", "karma"]);
 };
