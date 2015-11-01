@@ -39,6 +39,7 @@ module.exports = function (grunt) {
       files: [
         "Gruntfile.js",
         paths.src("core.js"),
+        paths.tests("urls.js"),
       ],
       options: {
         globals: {

@@ -110,6 +110,20 @@ describe("SourcePhotos", function () {
 
       expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/200x100/random");
     });
+
+    it("returns a random photo", function () {
+      var photo = new SourcePhoto();
+
+      expect(photo.build()).toEqual("https://source.unsplash.com/random");
+    });
+
+    it("returns a random photo with dimensions", function () {
+      var photo = new SourcePhoto();
+
+      photo.size(200,100);
+
+      expect(photo.build()).toEqual("https://source.unsplash.com/200x100/random");
+    });
   });
 
 });

@@ -104,6 +104,11 @@
       this.url += "/random";
       return this.url;
 
+    } else {
+      this._appendDimensions();
+      this.url += "/random";
+      return this.url;
+      
     }
   };
 
