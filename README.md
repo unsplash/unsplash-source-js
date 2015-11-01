@@ -12,17 +12,17 @@ Include `unsplash-source.js` or `unsplash-source.min.js` in your page:
 <script src="/js/unsplash-source.js"></script>
 ```
 
-Then build the photo you want using any of the options below.
+Then build the photo you want using any of the chainable methods below.
 
 Method | Arguments | Example | Description
 -------|-----------|---------|------------
-`find`|`"publicId"`|`photo.find("oMpAz-DN-9I")`|Finds a photo by its specific public ID
-`width`|`width`|`photo.width(2000)`|Sets the width of the photo in pixels
-`height`|`height`|`photo.height(2000)`|Sets the height of the photo in pixels
-`size`|`width, height`|`photo.size(1080,800)`|Shorthand for setting the width and height of the photo in pixels
+`find`|`"publicId"`|`photo.find("oMpAz-DN-9I")`|Finds a photo by its ID
+`width`|`width`|`photo.width(2000)`|Sets the width in pixels
+`height`|`height`|`photo.height(2000)`|Sets the height in pixels
+`size`|`width, height`|`photo.size(1080,800)`|Shorthand for setting the width and height in pixels
 `randomize`|`null || "daily" || "weekly"`|`photo.randomize("weekly")`|Sets the randomization interval
-`fromUser`|`"username"`|`photo.fromUser("erondu")`|Limits the photos to a specific photographer
-`fromCategory`|`"category"`|`photo.fromCategory("nature")`|Limits the photos to a specific category
+`fromUser`|`"username"`|`photo.fromUser("erondu")`|Limits to a specific photographer
+`fromCategory`|`"category"`|`photo.fromCategory("nature")`|Limits to a specific category
 
 *Note*: Not all methods are compatible with each other. For example, trying to randomize a specific photo doesn't make sense. The wrapper will ignore incompatible methods and only construct URLs compatible with the Unsplash Source API.
 
