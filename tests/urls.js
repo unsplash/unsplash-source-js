@@ -76,6 +76,14 @@ describe("SourcePhotos", function () {
     });
   });
 
+  describe("#_appendRandomization", function () {
+    it("defaults to random", function () {
+      var photo = new SourcePhoto();
+
+      expect(photo._appendRandomization()).toEqual("https://source.unsplash.com/random");
+    });
+  });
+
   describe("#build", function () {
 
     describe("returns a specific photo", function () {

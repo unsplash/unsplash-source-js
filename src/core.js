@@ -100,6 +100,16 @@
   };
 
   /**
+   * Appends the randomization option to the URL
+   * @return {[type]} [description]
+   */
+  SourcePhoto.prototype._appendRandomization = function () {
+    this.url += "/random";
+
+    return this.url;
+  };
+
+  /**
    * Creates the URL based on the previous actions
    * @return {String} the photo URL
    */
@@ -112,18 +122,18 @@
     } else if (!!this.username) {
       this.url += "/user/" + this.username;
       this._appendDimensions();
-      this.url += "/random";
+      this._appendRandomization();
       return this.url;
 
     } else if (!!this.category) {
       this.url += "/category/" + this.category;
       this._appendDimensions();
-      this.url += "/random";
+      this._appendRandomization();
       return this.url;
 
     } else {
       this._appendDimensions();
-      this.url += "/random";
+      this._appendRandomization();
       return this.url;
 
     }
