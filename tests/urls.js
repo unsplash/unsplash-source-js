@@ -68,7 +68,7 @@ describe("SourcePhotos", function () {
 
       photo.withKeywords("dog, cat");
 
-      expect(photo.keywords).toEqual("dog,%20cat");
+      expect(photo.keywords).toEqual("dog,cat");
     });
   });
 

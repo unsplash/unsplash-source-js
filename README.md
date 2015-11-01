@@ -58,7 +58,7 @@ var photo = new SourcePhoto();
 photo.fromCategory("nature")
      .size(1000, 1200)
      .keywords(["trees", "water"])
-     .build(); // => "https://source.unsplash.com/category/nature/1000x1200/random"
+     .build(); // => "https://source.unsplash.com/category/nature/1000x1200/random?trees,water"
 ```
 
 Get a specific photo (the photo ID matches the photo ID from unsplash.com):

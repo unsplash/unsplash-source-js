@@ -66,7 +66,7 @@
    * @return {SourcePhoto}
    */
   SourcePhoto.prototype.randomize = function (interval) {
-    if (interval == 'daily' || interval == 'weekly') {
+    if (interval == "daily" || interval == "weekly") {
       this.randomizationInterval = interval;
     } else {
       this.randomizationInterval = null;
@@ -81,11 +81,20 @@
    * @return {SourcePhoto}
    */
   SourcePhoto.prototype.withKeywords = function (keywords) {
-    if (Array.isArray(keywords)) {
-      this.keywords = keywords.join(',');
-    } else {
-      this.keywords = encodeURI(keywords);
+    var sanitizedKeywords = [];
+
+    // Handle a string of comma-separated keywords
+    if (!Array.isArray(keywords)) {
+      keywords = keywords.split(",");
     }
+
+    // Remove any leading or trailing whitespace from each keyword
+    keywords.forEach(function (keyword) {
+      sanitizedKeywords.push(keyword.trim());
+    });
+
+    this.keywords = sanitizedKeywords.join(",");
+    this.keywords = encodeURI(this.keywords);
 
     return this;
   };
@@ -151,9 +160,9 @@
   SourcePhoto.prototype._appendRandomization = function () {
     this.url += "/random";
 
-    if (this.randomizationInterval == 'daily') {
+    if (this.randomizationInterval == "daily") {
       this.url += ",daily";
-    } else if (this.randomizationInterval == 'weekly') {
+    } else if (this.randomizationInterval == "weekly") {
       this.url += ",weekly";
     }
 

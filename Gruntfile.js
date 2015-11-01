@@ -38,7 +38,6 @@ module.exports = function (grunt) {
     "jshint": {
       files: [
         "Gruntfile.js",
-        paths.src("polyfills.js"),
         paths.src("core.js"),
         paths.tests("urls.js"),
       ],
@@ -58,8 +57,8 @@ module.exports = function (grunt) {
       unit: {
         options: {
           files: [
-            paths.src("core.js"),
             paths.src("polyfills.js"),
+            paths.src("core.js"),
             paths.tests("**/*.js"),
           ],
           singleRun: true,
