@@ -23,7 +23,7 @@ Method | Arguments | Example | Description
 `randomize`|`null || "daily" || "weekly"`|`photo.randomize("weekly")`|Sets the randomization interval
 `fromUser`|`"username"`|`photo.fromUser("erondu")`|Limits to a specific photographer
 `fromCategory`|`"category"`|`photo.fromCategory("nature")`|Limits to a specific category
-`withKeywords`|`"keyword" || [arrayOfKeywords]`|`photo.withKeywords("dog")`|Limits to tags or locations matching the keywords
+`of`|`"keyword" || [arrayOfKeywords]`|`photo.of("dog")`|Limits to tags or locations matching the keywords
 `build`||`photo.build()`|Returns the configured URL.
 
 *Note*: Not all methods are compatible with each other. For example, trying to randomize a specific photo doesn't make sense. The wrapper will ignore incompatible methods and only construct URLs compatible with the Unsplash Source API.
@@ -56,8 +56,8 @@ Get a random nature photo of trees and water, cropped to `1000px` x `1200px`:
 var photo = new SourcePhoto();
 
 photo.fromCategory("nature")
+     .of(["trees", "water"])
      .size(1000, 1200)
-     .keywords(["trees", "water"])
      .build(); // => "https://source.unsplash.com/category/nature/1000x1200/random?trees,water"
 ```
 

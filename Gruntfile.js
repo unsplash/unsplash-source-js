@@ -91,7 +91,7 @@ module.exports = function (grunt) {
 
     /*
     ## Uglify
-
+    https://github.com/gruntjs/grunt-contrib-uglify
      */
     uglify: {
       options: {

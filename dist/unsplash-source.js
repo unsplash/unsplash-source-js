@@ -164,7 +164,7 @@ if (!Array.prototype.forEach) {
    * @param  {[Array || String]} keywords
    * @return {SourcePhoto}
    */
-  SourcePhoto.prototype.withKeywords = function (keywords) {
+  SourcePhoto.prototype.of = function (keywords) {
     var sanitizedKeywords = [];
 
     // Handle a string of comma-separated keywords
