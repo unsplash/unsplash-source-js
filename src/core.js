@@ -69,6 +69,17 @@
   };
 
   /**
+   * Limits the photos to a specific category
+   * @param  {String} category
+   * @return {SourcePhoto}
+   */
+  SourcePhoto.prototype.fromCategory = function (category) {
+    this.category = category;
+
+    return this;
+  };
+
+  /**
    * Returns true if the photo has dimensions set
    * @return {Boolean}
    */
@@ -104,11 +115,17 @@
       this.url += "/random";
       return this.url;
 
+    } else if (!!this.category) {
+      this.url += "/category/" + this.category;
+      this._appendDimensions();
+      this.url += "/random";
+      return this.url;
+
     } else {
       this._appendDimensions();
       this.url += "/random";
       return this.url;
-      
+
     }
   };
 
