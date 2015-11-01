@@ -54,6 +54,40 @@ describe("SourcePhotos", function () {
     });
   });
 
+  describe("#randomize", function () {
+    it("defaults to having no interval", function () {
+      var photo = new SourcePhoto();
+
+      photo.randomize();
+
+      expect(photo.randomizationInterval).toBeNull();
+    });
+
+    it("sets the interval to weekly", function () {
+      var photo = new SourcePhoto();
+
+      photo.randomize("weekly");
+
+      expect(photo.randomizationInterval).toEqual("weekly");
+    });
+
+    it("sets the interval to daily", function () {
+      var photo = new SourcePhoto();
+
+      photo.randomize("daily");
+
+      expect(photo.randomizationInterval).toEqual("daily");
+    });
+
+    it("doesn't set an interval if it is unsupported", function () {
+      var photo = new SourcePhoto();
+
+      photo.randomize("yearly");
+
+      expect(photo.randomizationInterval).toBeNull();
+    });
+  });
+
   describe("#_hasDimensions", function () {
     it("returns true when dimensions are set", function () {
       var photo = new SourcePhoto();
@@ -122,6 +156,12 @@ describe("SourcePhotos", function () {
 
         expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/200x100/random");
       });
+
+      it("with interval", function () {
+        photo.randomize("weekly");
+
+        expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/random,weekly");
+      });
     });
 
     describe("returns a random photo from a category", function () {
@@ -141,6 +181,12 @@ describe("SourcePhotos", function () {
 
         expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/200x100/random");
       });
+
+      it("with interval", function () {
+        photo.randomize("daily");
+
+        expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/random,daily");
+      });
     });
 
     describe("returns a random photo", function () {
@@ -158,6 +204,12 @@ describe("SourcePhotos", function () {
         photo.size(200,100);
 
         expect(photo.build()).toEqual("https://source.unsplash.com/200x100/random");
+      });
+
+      it("with interval", function () {
+        photo.randomize();
+
+        expect(photo.build()).toEqual("https://source.unsplash.com/random");
       });
     });
   });

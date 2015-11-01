@@ -5,6 +5,7 @@
     this.version = "1.0.0";
     this.url = "https://source.unsplash.com";
     this.dimensions = {};
+    this.randomizationInterval = null;
 
     return this;
   };
@@ -58,6 +59,23 @@
   };
 
   /**
+   * Sets the randomization interval
+   *
+   * Note: only accepts three possible values (null, daily, or weekly)
+   * @param  {String} interval
+   * @return {SourcePhoto}
+   */
+  SourcePhoto.prototype.randomize = function (interval) {
+    if (interval == 'daily' || interval == 'weekly') {
+      this.randomizationInterval = interval;
+    } else {
+      this.randomizationInterval = null;
+    }
+
+    return this;
+  };
+
+  /**
    * Limits the photos to a specific photographer
    * @param  {String} username 
    * @return {SourcePhoto}
@@ -100,11 +118,17 @@
   };
 
   /**
-   * Appends the randomization option to the URL
+   * Appends the randomization interval to the URL
    * @return {[type]} [description]
    */
   SourcePhoto.prototype._appendRandomization = function () {
     this.url += "/random";
+
+    if (this.randomizationInterval == 'daily') {
+      this.url += ",daily";
+    } else if (this.randomizationInterval == 'weekly') {
+      this.url += ",weekly";
+    }
 
     return this.url;
   };
