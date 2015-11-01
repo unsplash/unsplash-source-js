@@ -12,7 +12,19 @@ Include `unsplash-source.js` or `unsplash-source.min.js` in your page:
 <script src="/js/unsplash-source.js"></script>
 ```
 
-Then build the photo you want using any of the options.
+Then build the photo you want using any of the options below.
+
+Method | Arguments | Example | Description
+-------|-----------|---------|------------
+`find`|`"publicId"`|`photo.find("oMpAz-DN-9I")`|Finds a photo by its specific public ID
+`width`|`width`|`photo.width(2000)`|Sets the width of the photo in pixels
+`height`|`height`|`photo.height(2000)`|Sets the height of the photo in pixels
+`size`|`width, height`|`photo.size(1080,800)`|Shorthand for setting the width and height of the photo in pixels
+`randomize`|`null || "daily" || "weekly"`|`photo.randomize("weekly")`|Sets the randomization interval
+`fromUser`|`"username"`|`photo.fromUser("erondu")`|Limits the photos to a specific photographer
+`fromCategory`|`"category"`|`photo.fromCategory("nature")`|Limits the photos to a specific category
+
+*Note*: Not all methods are compatible with each other. For example, trying to randomize a specific photo doesn't make sense. The wrapper will ignore incompatible methods and only construct URLs compatible with the Unsplash Source API.
 
 ## Examples
 
@@ -24,7 +36,7 @@ var photo = new SourcePhoto();
 photo.build(); // => "https://source.unsplash.com/random"
 ```
 
-Get a random photo from Unsplash Photographer `@erondu` cropped to 2048px x 1200px, that changes once a day:
+Get a random photo from photographer [Jared Erondu](https://unsplash.com/erondu) cropped to `2048px` x `1200px`, that changes once a day:
 
 ```js
 var photo = new SourcePhoto();
@@ -36,7 +48,7 @@ photo.fromUser("erondu")
      .build(); // => "https://source.unsplash.com/user/erondu/2048x1200/random,daily"
 ```
 
-Get a random nature photo cropped to 1000px x 1200px:
+Get a random nature photo cropped to `1000px` x `1200px`:
 
 ```js
 var photo = new SourcePhoto();
