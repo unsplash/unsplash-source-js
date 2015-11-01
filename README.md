@@ -12,7 +12,7 @@ Include `unsplash-source.js` or `unsplash-source.min.js` in your page:
 <script src="/js/unsplash-source.js"></script>
 ```
 
-Then build the photo you want using any of the chainable methods below.
+Then create the photo you want using any of the chainable methods below, calling `build` as the last step to return the photo's URL.
 
 Method | Arguments | Example | Description
 -------|-----------|---------|------------
@@ -23,6 +23,7 @@ Method | Arguments | Example | Description
 `randomize`|`null || "daily" || "weekly"`|`photo.randomize("weekly")`|Sets the randomization interval
 `fromUser`|`"username"`|`photo.fromUser("erondu")`|Limits to a specific photographer
 `fromCategory`|`"category"`|`photo.fromCategory("nature")`|Limits to a specific category
+`build`||`photo.build()`|Returns the configured URL.
 
 *Note*: Not all methods are compatible with each other. For example, trying to randomize a specific photo doesn't make sense. The wrapper will ignore incompatible methods and only construct URLs compatible with the Unsplash Source API.
 
