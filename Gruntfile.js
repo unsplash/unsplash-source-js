@@ -38,6 +38,7 @@ module.exports = function (grunt) {
     "jshint": {
       files: [
         "Gruntfile.js",
+        paths.src("polyfills.js"),
         paths.src("core.js"),
         paths.tests("urls.js"),
       ],
@@ -58,6 +59,7 @@ module.exports = function (grunt) {
         options: {
           files: [
             paths.src("core.js"),
+            paths.src("polyfills.js"),
             paths.tests("**/*.js"),
           ],
           singleRun: true,
@@ -80,6 +82,7 @@ module.exports = function (grunt) {
       js: {
         src: [
           paths.src("banner.js"),
+          paths.src("polyfills.js"),
           paths.src("core.js"),
         ],
         dest: paths.dist("unsplash-source.js"),

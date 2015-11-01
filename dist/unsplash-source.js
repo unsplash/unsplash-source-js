@@ -13,6 +13,12 @@ $$ |  $$ |$$ |  $$ | \____$$\ $$ |  $$ |$$ |$$  __$$ | \____$$\ $$ |  $$ |
                               \__|                                        
 */
 
+if (!Array.isArray) {
+  Array.isArray = function(arg) {
+    return Object.prototype.toString.call(arg) === '[object Array]';
+  };
+}
+
 (function (root, undefined) {
   "use strict";
 
@@ -91,6 +97,21 @@ $$ |  $$ |$$ |  $$ | \____$$\ $$ |  $$ |$$ |$$  __$$ | \____$$\ $$ |  $$ |
   };
 
   /**
+   * Limits the photo to having tags matching the keywords
+   * @param  {[Array || String]} keywords
+   * @return {SourcePhoto}
+   */
+  SourcePhoto.prototype.withKeywords = function (keywords) {
+    if (Array.isArray(keywords)) {
+      this.keywords = keywords.join(',');
+    } else {
+      this.keywords = encodeURI(keywords);
+    }
+
+    return this;
+  };
+
+  /**
    * Limits the photos to a specific photographer
    * @param  {String} username 
    * @return {SourcePhoto}
@@ -133,6 +154,18 @@ $$ |  $$ |$$ |  $$ | \____$$\ $$ |  $$ |$$ |$$  __$$ | \____$$\ $$ |  $$ |
   };
 
   /**
+   * Appends the keywords to the URL
+   * @return {String} the photo URL
+   */
+  SourcePhoto.prototype._appendKeywords = function () {
+    if (this.keywords) {
+      this.url += "?" + this.keywords;
+    }
+
+    return this.url;
+  };
+
+  /**
    * Appends the randomization interval to the URL
    * @return {[type]} [description]
    */
@@ -162,17 +195,20 @@ $$ |  $$ |$$ |  $$ | \____$$\ $$ |  $$ |$$ |$$  __$$ | \____$$\ $$ |  $$ |
       this.url += "/user/" + this.username;
       this._appendDimensions();
       this._appendRandomization();
+      this._appendKeywords();
       return this.url;
 
     } else if (!!this.category) {
       this.url += "/category/" + this.category;
       this._appendDimensions();
       this._appendRandomization();
+      this._appendKeywords();
       return this.url;
 
     } else {
       this._appendDimensions();
       this._appendRandomization();
+      this._appendKeywords();
       return this.url;
 
     }

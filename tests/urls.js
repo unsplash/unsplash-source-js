@@ -54,6 +54,24 @@ describe("SourcePhotos", function () {
     });
   });
 
+  describe("#withKeywords", function () {
+    it("sets the keywords from an array", function () {
+      var photo = new SourcePhoto();
+
+      photo.withKeywords(["dog", "cat"]);
+
+      expect(photo.keywords).toEqual("dog,cat");
+    });
+
+    it("sets the keywords from a comma-separated list", function () {
+      var photo = new SourcePhoto();
+
+      photo.withKeywords("dog, cat");
+
+      expect(photo.keywords).toEqual("dog,%20cat");
+    });
+  });
+
   describe("#randomize", function () {
     it("defaults to having no interval", function () {
       var photo = new SourcePhoto();
@@ -108,6 +126,12 @@ describe("SourcePhotos", function () {
 
       expect(photo._appendDimensions()).toEqual("https://source.unsplash.com/100x200");
     });
+
+    it("doesn't add the dimensions to the URL if they aren't set", function () {
+      var photo = new SourcePhoto();
+
+      expect(photo._appendDimensions()).toEqual("https://source.unsplash.com");
+    });
   });
 
   describe("#_appendRandomization", function () {
@@ -115,6 +139,22 @@ describe("SourcePhotos", function () {
       var photo = new SourcePhoto();
 
       expect(photo._appendRandomization()).toEqual("https://source.unsplash.com/random");
+    });
+  });
+
+  describe("#_appendKeywords", function () {
+    it("adds keywords", function () {
+      var photo = new SourcePhoto();
+
+      photo.withKeywords("dog");
+
+      expect(photo._appendKeywords()).toEqual("https://source.unsplash.com?dog");
+    });
+
+    it("doesn't add keywords if they aren't set", function () {
+      var photo = new SourcePhoto();
+
+      expect(photo._appendKeywords()).toEqual("https://source.unsplash.com");
     });
   });
 
@@ -162,6 +202,12 @@ describe("SourcePhotos", function () {
 
         expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/random,weekly");
       });
+
+      it("with keywords", function () {
+        photo.withKeywords("dog");
+
+        expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/random?dog");
+      });
     });
 
     describe("returns a random photo from a category", function () {
@@ -187,6 +233,12 @@ describe("SourcePhotos", function () {
 
         expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/random,daily");
       });
+
+      it("with keywords", function () {
+        photo.withKeywords("dog");
+
+        expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/random?dog");
+      });
     });
 
     describe("returns a random photo", function () {
@@ -210,6 +262,12 @@ describe("SourcePhotos", function () {
         photo.randomize();
 
         expect(photo.build()).toEqual("https://source.unsplash.com/random");
+      });
+
+      it("with keywords", function () {
+        photo.withKeywords("dog");
+
+        expect(photo.build()).toEqual("https://source.unsplash.com/random?dog");
       });
     });
   });
