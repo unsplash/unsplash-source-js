@@ -178,7 +178,7 @@ describe("SourcePhotos", function () {
     });
   });
 
-  describe("#build", function () {
+  describe("#fetch", function () {
 
     describe("returns a specific photo", function () {
       var photo;
@@ -189,13 +189,13 @@ describe("SourcePhotos", function () {
       });
 
       it("", function () {
-        expect(photo.build()).toEqual("https://source.unsplash.com/6hxvm0NzYP8");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/6hxvm0NzYP8");
       });
 
       it("with dimensions", function () {
         photo.size(200, 100);
 
-        expect(photo.build()).toEqual("https://source.unsplash.com/6hxvm0NzYP8/200x100");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/6hxvm0NzYP8/200x100");
       });
     });
 
@@ -208,32 +208,32 @@ describe("SourcePhotos", function () {
       });
 
       it("", function () {
-        expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/random");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/user/crew/random");
       });
 
       it("with dimensions", function () {
         photo.size(200, 100);
 
-        expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/200x100/random");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/user/crew/200x100/random");
       });
 
       it("with interval", function () {
         photo.randomize("weekly");
 
-        expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/random,weekly");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/user/crew/random,weekly");
       });
 
       it("with keywords", function () {
         photo.of("dog");
 
-        expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/random?dog");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/user/crew/random?dog");
       });
 
 
       it("with scope", function () {
         photo.all();
 
-        expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/all/random");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/user/crew/all/random");
       });
     });
 
@@ -246,31 +246,31 @@ describe("SourcePhotos", function () {
       });
 
       it("", function () {
-        expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/random");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/category/buildings/random");
       });
 
       it("with dimensions", function () {
         photo.size(200, 100);
 
-        expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/200x100/random");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/category/buildings/200x100/random");
       });
 
       it("with interval", function () {
         photo.randomize("daily");
 
-        expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/random,daily");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/category/buildings/random,daily");
       });
 
       it("with keywords", function () {
         photo.of("dog");
 
-        expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/random?dog");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/category/buildings/random?dog");
       });
 
       it("with scope", function () {
         photo.all();
 
-        expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/all/random");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/category/buildings/all/random");
       });
     });
 
@@ -282,31 +282,31 @@ describe("SourcePhotos", function () {
       });
 
       it("", function () {
-        expect(photo.build()).toEqual("https://source.unsplash.com/random");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/random");
       });
 
       it("with dimensions", function () {
         photo.size(200,100);
 
-        expect(photo.build()).toEqual("https://source.unsplash.com/200x100/random");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/200x100/random");
       });
 
       it("with interval", function () {
         photo.randomize();
 
-        expect(photo.build()).toEqual("https://source.unsplash.com/random");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/random");
       });
 
       it("with keywords", function () {
         photo.of("dog");
 
-        expect(photo.build()).toEqual("https://source.unsplash.com/random?dog");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/random?dog");
       });
 
       it("with scope", function () {
         photo.all();
 
-        expect(photo.build()).toEqual("https://source.unsplash.com/all/random");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/all/random");
       });
     });
   });

@@ -205,7 +205,7 @@
    * Creates the URL based on the previous actions
    * @return {String} the photo URL
    */
-  SourcePhoto.prototype.build = function () {
+  SourcePhoto.prototype.fetch = function () {
     if (!!this.id) {
       this.url += "/" + this.id;
       this._appendDimensions();

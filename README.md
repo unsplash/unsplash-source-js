@@ -12,7 +12,7 @@ Include `unsplash-source.js` or `unsplash-source.min.js` in your page:
 <script src="/js/unsplash-source.js"></script>
 ```
 
-Then create the photo you want using any of the chainable methods below, calling `build` as the last step to return the photo's URL.
+Then create the photo you want using any of the chainable methods below, calling `fetch` as the last step to return the photo's URL.
 
 Method | Arguments | Example | Description
 -------|-----------|---------|------------
@@ -25,7 +25,7 @@ Method | Arguments | Example | Description
 `fromCategory`|`"category"`|`photo.fromCategory("nature")`|Limits to a specific category
 `of`|`"keyword" || [arrayOfKeywords]`|`photo.of("dog")`|Limits to tags or locations matching the keywords
 `all`||`photo.all()`|Searches for all photos, instead of just featured photos
-`build`||`photo.build()`|Returns the configured URL.
+`fetch`||`photo.fetch()`|Returns the configured URL.
 
 By default, the photos are [filtered to featured photos](https://unsplash.com/documentation#get-a-random-photo). To remove this filter, call `all`. We recommend using `all` when limiting photos to a specific keyword (using `of`) or limiting photos to specific photographers (using `fromUser`) to maximize the possiblity of a matching photo.
 
@@ -40,7 +40,7 @@ Get a random photo (the Unsplash Source API defaults to a width of 1080px):
 ```js
 var photo = new SourcePhoto();
 
-photo.build(); // => "https://source.unsplash.com/random"
+photo.fetch(); // => "https://source.unsplash.com/random"
 ```
 
 Get a random featured photo that rotates weekly, cropped to `800px` x `600px`:
@@ -50,7 +50,7 @@ var photo = new SourcePhoto();
 
 photo.randomize("weekly")
      .size(800, 600)
-     .build(); // => "https://source.unsplash.com/800x600/random,weekly"
+     .fetch(); // => "https://source.unsplash.com/800x600/random,weekly"
 ```
 
 Get a random photo from photographer [Jared Erondu](https://unsplash.com/erondu) cropped to `2048px` x `1200px`, that changes once a day:
@@ -63,7 +63,7 @@ photo.all()
      .width(2048)
      .height(1200)
      .randomize("daily")
-     .build(); // => "https://source.unsplash.com/user/erondu/2048x1200/random,daily"
+     .fetch(); // => "https://source.unsplash.com/user/erondu/2048x1200/random,daily"
 ```
 
 Get a random nature photo of trees and water from the 'all' feed, cropped to `1000px` x `1200px`:
@@ -75,7 +75,7 @@ photo.all()
      .fromCategory("nature")
      .of(["trees", "water"])
      .size(1000, 1200)
-     .build(); // => "https://source.unsplash.com/category/nature/1000x1200/random?trees,water"
+     .fetch(); // => "https://source.unsplash.com/category/nature/1000x1200/random?trees,water"
 ```
 
 Get a specific photo (the photo ID matches the photo ID from unsplash.com):
@@ -84,7 +84,7 @@ Get a specific photo (the photo ID matches the photo ID from unsplash.com):
 photo = new SourcePhoto();
 
 photo.find("oMpAz-DN-9I")
-     .build(); // => "https://source.unsplash.com/oMpAz-DN-9I"
+     .fetch(); // => "https://source.unsplash.com/oMpAz-DN-9I"
 ```
 
 ## Development
