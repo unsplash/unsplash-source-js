@@ -1,7 +1,7 @@
 (function (root, undefined) {
   "use strict";
 
-  var SourcePhoto = function () {
+  var UnsplashPhoto = function () {
     this.version = "1.0.0";
     this.url = "https://source.unsplash.com";
     this.dimensions = {};
@@ -14,9 +14,9 @@
   /**
    * Finds a photo by its specific public ID
    * @param  {Int} id
-   * @return {SourcePhoto}
+   * @return {UnsplashPhoto}
    */
-  SourcePhoto.prototype.find = function (id) {
+  UnsplashPhoto.prototype.find = function (id) {
     this.id = id;
 
     return this;
@@ -28,9 +28,9 @@
    * Note: crops if necessary to maintain the aspect ratio
    * 
    * @param  {Int} width
-   * @return {SourcePhoto}
+   * @return {UnsplashPhoto}
    */
-  SourcePhoto.prototype.width = function (width) {
+  UnsplashPhoto.prototype.width = function (width) {
     this.dimensions.width = width;
 
     return this;
@@ -42,9 +42,9 @@
    * Note: crops if necessary to maintain the aspect ratio
    * 
    * @param  {Int} height
-   * @return {SourcePhoto}
+   * @return {UnsplashPhoto}
    */
-  SourcePhoto.prototype.height = function (height) {
+  UnsplashPhoto.prototype.height = function (height) {
     this.dimensions.height = height;
 
     return this;
@@ -57,9 +57,9 @@
    * 
    * @param  {Int} width
    * @param  {Int} height (optional)
-   * @return {SourcePhoto}
+   * @return {UnsplashPhoto}
    */
-  SourcePhoto.prototype.size = function (width, height) {
+  UnsplashPhoto.prototype.size = function (width, height) {
     this.dimensions = {
       width: width,
       height: height || width
@@ -73,9 +73,9 @@
    *
    * Note: only accepts three possible values (null, daily, or weekly)
    * @param  {String} interval
-   * @return {SourcePhoto}
+   * @return {UnsplashPhoto}
    */
-  SourcePhoto.prototype.randomize = function (interval) {
+  UnsplashPhoto.prototype.randomize = function (interval) {
     if (interval == "daily" || interval == "weekly") {
       this.randomizationInterval = interval;
     } else {
@@ -87,9 +87,9 @@
 
   /**
    * Sets the scope to `all` (instead of `featured`)
-   * @return {SourcePhoto}
+   * @return {UnsplashPhoto}
    */
-  SourcePhoto.prototype.all = function () {
+  UnsplashPhoto.prototype.all = function () {
     this.scope = "all";
 
     return this;
@@ -98,9 +98,9 @@
   /**
    * Limits the photo to having tags or locations matching the keywords
    * @param  {[Array || String]} keywords
-   * @return {SourcePhoto}
+   * @return {UnsplashPhoto}
    */
-  SourcePhoto.prototype.of = function (keywords) {
+  UnsplashPhoto.prototype.of = function (keywords) {
     var sanitizedKeywords = [];
 
     // Handle a string of comma-separated keywords
@@ -122,9 +122,9 @@
   /**
    * Limits the photos to a specific photographer
    * @param  {String} username 
-   * @return {SourcePhoto}
+   * @return {UnsplashPhoto}
    */
-  SourcePhoto.prototype.fromUser = function (username) {
+  UnsplashPhoto.prototype.fromUser = function (username) {
     this.username = username;
 
     return this;
@@ -133,9 +133,9 @@
   /**
    * Limits the photos to a specific category
    * @param  {String} category
-   * @return {SourcePhoto}
+   * @return {UnsplashPhoto}
    */
-  SourcePhoto.prototype.fromCategory = function (category) {
+  UnsplashPhoto.prototype.fromCategory = function (category) {
     this.category = category;
 
     return this;
@@ -145,7 +145,7 @@
    * Returns true if the photo has dimensions set
    * @return {Boolean}
    */
-  SourcePhoto.prototype._hasDimensions = function () {
+  UnsplashPhoto.prototype._hasDimensions = function () {
     return !!this.dimensions.width && !!this.dimensions.height;
   };
 
@@ -153,7 +153,7 @@
    * Appends the photo dimensions to the URL
    * @return {String} the photo URL
    */
-  SourcePhoto.prototype._appendDimensions = function () {
+  UnsplashPhoto.prototype._appendDimensions = function () {
     if (this._hasDimensions()) {
       this.url += "/" + this.dimensions.width + "x" + this.dimensions.height;
     }
@@ -165,7 +165,7 @@
    * Appends the scope to the URL
    * @return {String} the photo URL
    */
-  SourcePhoto.prototype._appendScope = function () {
+  UnsplashPhoto.prototype._appendScope = function () {
     if (this.scope == "all") {
       this.url += "/all";
     }
@@ -177,7 +177,7 @@
    * Appends the keywords to the URL
    * @return {String} the photo URL
    */
-  SourcePhoto.prototype._appendKeywords = function () {
+  UnsplashPhoto.prototype._appendKeywords = function () {
     if (this.keywords) {
       this.url += "?" + this.keywords;
     }
@@ -189,7 +189,7 @@
    * Appends the randomization interval to the URL
    * @return {[type]} [description]
    */
-  SourcePhoto.prototype._appendRandomization = function () {
+  UnsplashPhoto.prototype._appendRandomization = function () {
     this.url += "/random";
 
     if (this.randomizationInterval == "daily") {
@@ -205,7 +205,7 @@
    * Creates the URL based on the previous actions
    * @return {String} the photo URL
    */
-  SourcePhoto.prototype.fetch = function () {
+  UnsplashPhoto.prototype.fetch = function () {
     if (!!this.id) {
       this.url += "/" + this.id;
       this._appendDimensions();
@@ -237,6 +237,6 @@
     }
   };
 
-  root.SourcePhoto = SourcePhoto;
+  root.UnsplashPhoto = UnsplashPhoto;
 
 })(this);

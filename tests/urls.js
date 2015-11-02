@@ -1,12 +1,12 @@
-describe("SourcePhotos", function () {
+describe("UnsplashPhoto", function () {
 
   it("exists", function () {
-    expect(SourcePhoto).toBeDefined();
+    expect(UnsplashPhoto).toBeDefined();
   });
 
   describe("#find", function () {
     it("sets the ID", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.find("uniqueString");
 
@@ -16,7 +16,7 @@ describe("SourcePhotos", function () {
 
   describe("#width", function () {
     it("sets the width", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.width(200);
 
@@ -26,7 +26,7 @@ describe("SourcePhotos", function () {
 
   describe("#height", function () {
     it("sets the height", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.height(200);
 
@@ -36,7 +36,7 @@ describe("SourcePhotos", function () {
 
   describe("#size", function () {
     it("sets both dimensions", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.size(200);
 
@@ -45,7 +45,7 @@ describe("SourcePhotos", function () {
     });
 
     it("sets the width and height", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.size(200, 100);
 
@@ -56,7 +56,7 @@ describe("SourcePhotos", function () {
 
   describe("#all", function () {
     it("sets the scope to all", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.all();
 
@@ -66,7 +66,7 @@ describe("SourcePhotos", function () {
 
   describe("#of", function () {
     it("sets the keywords from an array", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.of(["dog", "cat"]);
 
@@ -74,7 +74,7 @@ describe("SourcePhotos", function () {
     });
 
     it("sets the keywords from a comma-separated list", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.of("dog, cat");
 
@@ -84,7 +84,7 @@ describe("SourcePhotos", function () {
 
   describe("#randomize", function () {
     it("defaults to having no interval", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.randomize();
 
@@ -92,7 +92,7 @@ describe("SourcePhotos", function () {
     });
 
     it("sets the interval to weekly", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.randomize("weekly");
 
@@ -100,7 +100,7 @@ describe("SourcePhotos", function () {
     });
 
     it("sets the interval to daily", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.randomize("daily");
 
@@ -108,7 +108,7 @@ describe("SourcePhotos", function () {
     });
 
     it("doesn't set an interval if it is unsupported", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.randomize("yearly");
 
@@ -118,7 +118,7 @@ describe("SourcePhotos", function () {
 
   describe("#_hasDimensions", function () {
     it("returns true when dimensions are set", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.width(200);
       photo.height(200);
@@ -129,7 +129,7 @@ describe("SourcePhotos", function () {
 
   describe("#_appendDimensions", function () {
     it("adds the dimensions to the URL", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.width(100);
       photo.height(200);
@@ -138,7 +138,7 @@ describe("SourcePhotos", function () {
     });
 
     it("doesn't add the dimensions to the URL if they aren't set", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       expect(photo._appendDimensions()).toEqual("https://source.unsplash.com");
     });
@@ -146,7 +146,7 @@ describe("SourcePhotos", function () {
 
   describe("#_appendScope", function () {
     it("adds the scope to the URL", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.all();
 
@@ -156,7 +156,7 @@ describe("SourcePhotos", function () {
 
   describe("#_appendRandomization", function () {
     it("defaults to random", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       expect(photo._appendRandomization()).toEqual("https://source.unsplash.com/random");
     });
@@ -164,7 +164,7 @@ describe("SourcePhotos", function () {
 
   describe("#_appendKeywords", function () {
     it("adds keywords", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       photo.of("dog");
 
@@ -172,7 +172,7 @@ describe("SourcePhotos", function () {
     });
 
     it("doesn't add keywords if they aren't set", function () {
-      var photo = new SourcePhoto();
+      var photo = new UnsplashPhoto();
 
       expect(photo._appendKeywords()).toEqual("https://source.unsplash.com");
     });
@@ -184,7 +184,7 @@ describe("SourcePhotos", function () {
       var photo;
 
       beforeEach(function () {
-        photo = new SourcePhoto();
+        photo = new UnsplashPhoto();
         photo.find("6hxvm0NzYP8");
       });
 
@@ -203,7 +203,7 @@ describe("SourcePhotos", function () {
       var photo;
 
       beforeEach(function () {
-        photo = new SourcePhoto();
+        photo = new UnsplashPhoto();
         photo.fromUser("crew");
       });
 
@@ -241,7 +241,7 @@ describe("SourcePhotos", function () {
       var photo;
 
       beforeEach(function () {
-        photo = new SourcePhoto();
+        photo = new UnsplashPhoto();
         photo.fromCategory("buildings");
       });
 
@@ -278,7 +278,7 @@ describe("SourcePhotos", function () {
       var photo;
 
       beforeEach(function () {
-        photo = new SourcePhoto();
+        photo = new UnsplashPhoto();
       });
 
       it("", function () {

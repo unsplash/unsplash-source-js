@@ -38,7 +38,7 @@ Resize operations (`width`, `height`, `size`) maintain the aspect ratio of the o
 Get a random photo (the Unsplash Source API defaults to a width of 1080px):
 
 ```js
-var photo = new SourcePhoto();
+var photo = new UnsplashPhoto();
 
 photo.fetch(); // => "https://source.unsplash.com/random"
 ```
@@ -46,7 +46,7 @@ photo.fetch(); // => "https://source.unsplash.com/random"
 Get a random featured photo that rotates weekly, cropped to `800px` x `600px`:
 
 ```js
-var photo = new SourcePhoto();
+var photo = new UnsplashPhoto();
 
 photo.randomize("weekly")
      .size(800, 600)
@@ -56,7 +56,7 @@ photo.randomize("weekly")
 Get a random photo from photographer [Jared Erondu](https://unsplash.com/erondu) cropped to `2048px` x `1200px`, that changes once a day:
 
 ```js
-var photo = new SourcePhoto();
+var photo = new UnsplashPhoto();
 
 photo.all()
      .fromUser("erondu")
@@ -69,7 +69,7 @@ photo.all()
 Get a random nature photo of trees and water from the 'all' feed, cropped to `1000px` x `1200px`:
 
 ```js
-var photo = new SourcePhoto();
+var photo = new UnsplashPhoto();
 
 photo.all()
      .fromCategory("nature")
@@ -81,7 +81,7 @@ photo.all()
 Get a specific photo (the photo ID matches the photo ID from unsplash.com):
 
 ```js
-photo = new SourcePhoto();
+photo = new UnsplashPhoto();
 
 photo.find("oMpAz-DN-9I")
      .fetch(); // => "https://source.unsplash.com/oMpAz-DN-9I"
