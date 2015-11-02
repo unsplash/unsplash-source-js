@@ -23,6 +23,9 @@
 
   /**
    * Sets the width of the photo
+   *
+   * Note: crops if necessary to maintain the aspect ratio
+   * 
    * @param  {Int} width
    * @return {SourcePhoto}
    */
@@ -34,6 +37,9 @@
 
   /**
    * Sets the height of the photo
+   *
+   * Note: crops if necessary to maintain the aspect ratio
+   * 
    * @param  {Int} height
    * @return {SourcePhoto}
    */
@@ -45,6 +51,9 @@
 
   /**
    * Shorthand for setting the photo dimensions
+   *
+   * Note: crops if necessary to maintain the aspect ratio
+   * 
    * @param  {Int} width
    * @param  {Int} height (optional)
    * @return {SourcePhoto}

@@ -26,6 +26,8 @@ Method | Arguments | Example | Description
 `of`|`"keyword" || [arrayOfKeywords]`|`photo.of("dog")`|Limits to tags or locations matching the keywords
 `build`||`photo.build()`|Returns the configured URL.
 
+Resize operations (`width`, `height`, `size`) maintain the aspect ratio of the original photo by cropping if necessary.
+
 *Note*: Not all methods are compatible with each other. For example, trying to randomize a specific photo doesn't make sense. The wrapper will ignore incompatible methods and only construct URLs compatible with the Unsplash Source API.
 
 ## Examples

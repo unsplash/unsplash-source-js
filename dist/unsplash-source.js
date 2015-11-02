@@ -1,4 +1,4 @@
-/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2015-11-01 
+/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2015-11-02 
 
 $$\   $$\                               $$\                     $$\       
 $$ |  $$ |                              $$ |                    $$ |      
@@ -107,6 +107,9 @@ if (!Array.prototype.forEach) {
 
   /**
    * Sets the width of the photo
+   *
+   * Note: crops if necessary to maintain the aspect ratio
+   * 
    * @param  {Int} width
    * @return {SourcePhoto}
    */
@@ -118,6 +121,9 @@ if (!Array.prototype.forEach) {
 
   /**
    * Sets the height of the photo
+   *
+   * Note: crops if necessary to maintain the aspect ratio
+   * 
    * @param  {Int} height
    * @return {SourcePhoto}
    */
@@ -129,6 +135,9 @@ if (!Array.prototype.forEach) {
 
   /**
    * Shorthand for setting the photo dimensions
+   *
+   * Note: crops if necessary to maintain the aspect ratio
+   * 
    * @param  {Int} width
    * @param  {Int} height (optional)
    * @return {SourcePhoto}
