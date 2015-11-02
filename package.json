@@ -2,6 +2,10 @@
   "name": "unsplash-source-js",
   "version": "1.0.0",
   "description": "A javascript wrapper for Unsplash Source photos",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:CrewLabs/unsplash-source-js.git"
+  },
   "main": "dist/unsplash-source.js",
   "scripts": {
     "test": "grunt test"
@@ -15,7 +19,7 @@
     "embed"
   ],
   "author": "Unsplash",
-  "license": "BSD-2",
+  "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "^0.5.1",
