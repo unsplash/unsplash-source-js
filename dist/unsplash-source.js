@@ -89,6 +89,7 @@ if (!Array.prototype.forEach) {
     this.version = "1.0.0";
     this.url = "https://source.unsplash.com";
     this.dimensions = {};
+    this.scope = "featured";
     this.randomizationInterval = null;
 
     return this;
@@ -169,6 +170,16 @@ if (!Array.prototype.forEach) {
   };
 
   /**
+   * Sets the scope to `all` (instead of `featured`)
+   * @return {SourcePhoto}
+   */
+  SourcePhoto.prototype.all = function () {
+    this.scope = "all";
+
+    return this;
+  };
+
+  /**
    * Limits the photo to having tags or locations matching the keywords
    * @param  {[Array || String]} keywords
    * @return {SourcePhoto}
@@ -235,6 +246,18 @@ if (!Array.prototype.forEach) {
   };
 
   /**
+   * Appends the scope to the URL
+   * @return {String} the photo URL
+   */
+  SourcePhoto.prototype._appendScope = function () {
+    if (this.scope == "all") {
+      this.url += "/all";
+    }
+
+    return this.url;
+  };
+
+  /**
    * Appends the keywords to the URL
    * @return {String} the photo URL
    */
@@ -274,6 +297,7 @@ if (!Array.prototype.forEach) {
 
     } else if (!!this.username) {
       this.url += "/user/" + this.username;
+      this._appendScope();
       this._appendDimensions();
       this._appendRandomization();
       this._appendKeywords();
@@ -281,12 +305,14 @@ if (!Array.prototype.forEach) {
 
     } else if (!!this.category) {
       this.url += "/category/" + this.category;
+      this._appendScope();
       this._appendDimensions();
       this._appendRandomization();
       this._appendKeywords();
       return this.url;
 
     } else {
+      this._appendScope();
       this._appendDimensions();
       this._appendRandomization();
       this._appendKeywords();

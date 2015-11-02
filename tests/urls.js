@@ -54,6 +54,16 @@ describe("SourcePhotos", function () {
     });
   });
 
+  describe("#all", function () {
+    it("sets the scope to all", function () {
+      var photo = new SourcePhoto();
+
+      photo.all();
+
+      expect(photo.scope).toEqual("all");
+    });
+  });
+
   describe("#of", function () {
     it("sets the keywords from an array", function () {
       var photo = new SourcePhoto();
@@ -134,6 +144,16 @@ describe("SourcePhotos", function () {
     });
   });
 
+  describe("#_appendScope", function () {
+    it("adds the scope to the URL", function () {
+      var photo = new SourcePhoto();
+
+      photo.all();
+
+      expect(photo._appendScope()).toEqual("https://source.unsplash.com/all");
+    });
+  });
+
   describe("#_appendRandomization", function () {
     it("defaults to random", function () {
       var photo = new SourcePhoto();
@@ -208,6 +228,13 @@ describe("SourcePhotos", function () {
 
         expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/random?dog");
       });
+
+
+      it("with scope", function () {
+        photo.all();
+
+        expect(photo.build()).toEqual("https://source.unsplash.com/user/crew/all/random");
+      });
     });
 
     describe("returns a random photo from a category", function () {
@@ -239,6 +266,12 @@ describe("SourcePhotos", function () {
 
         expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/random?dog");
       });
+
+      it("with scope", function () {
+        photo.all();
+
+        expect(photo.build()).toEqual("https://source.unsplash.com/category/buildings/all/random");
+      });
     });
 
     describe("returns a random photo", function () {
@@ -268,6 +301,12 @@ describe("SourcePhotos", function () {
         photo.of("dog");
 
         expect(photo.build()).toEqual("https://source.unsplash.com/random?dog");
+      });
+
+      it("with scope", function () {
+        photo.all();
+
+        expect(photo.build()).toEqual("https://source.unsplash.com/all/random");
       });
     });
   });

@@ -24,7 +24,10 @@ Method | Arguments | Example | Description
 `fromUser`|`"username"`|`photo.fromUser("erondu")`|Limits to a specific photographer
 `fromCategory`|`"category"`|`photo.fromCategory("nature")`|Limits to a specific category
 `of`|`"keyword" || [arrayOfKeywords]`|`photo.of("dog")`|Limits to tags or locations matching the keywords
+`all`||`photo.all()`|Searches for all photos, instead of just featured photos
 `build`||`photo.build()`|Returns the configured URL.
+
+By default, the photos are filtered to featured photos. To remove this filter, call `all`. We recommend using `all` when limiting photos to a specific keyword (using `of`) to maximize the possiblity of a matching photo.
 
 Resize operations (`width`, `height`, `size`) maintain the aspect ratio of the original photo by cropping if necessary.
 
@@ -52,12 +55,13 @@ photo.fromUser("erondu")
      .build(); // => "https://source.unsplash.com/user/erondu/2048x1200/random,daily"
 ```
 
-Get a random nature photo of trees and water, cropped to `1000px` x `1200px`:
+Get a random nature photo of trees and water from the 'all' feed, cropped to `1000px` x `1200px`:
 
 ```js
 var photo = new SourcePhoto();
 
-photo.fromCategory("nature")
+photo.all()
+     .fromCategory("nature")
      .of(["trees", "water"])
      .size(1000, 1200)
      .build(); // => "https://source.unsplash.com/category/nature/1000x1200/random?trees,water"
