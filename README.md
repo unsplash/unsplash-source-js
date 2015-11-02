@@ -27,7 +27,7 @@ Method | Arguments | Example | Description
 `all`||`photo.all()`|Searches for all photos, instead of just featured photos
 `build`||`photo.build()`|Returns the configured URL.
 
-By default, the photos are filtered to featured photos. To remove this filter, call `all`. We recommend using `all` when limiting photos to a specific keyword (using `of`) to maximize the possiblity of a matching photo.
+By default, the photos are filtered to featured photos. To remove this filter, call `all`. We recommend using `all` when limiting photos to a specific keyword (using `of`) or limiting photos to specific photographers (using `fromUser`) to maximize the possiblity of a matching photo.
 
 Resize operations (`width`, `height`, `size`) maintain the aspect ratio of the original photo by cropping if necessary.
 
@@ -43,12 +43,23 @@ var photo = new SourcePhoto();
 photo.build(); // => "https://source.unsplash.com/random"
 ```
 
+Get a random featured photo that rotates weekly, cropped to `800px` x `600px`:
+
+```js
+var photo = new SourcePhoto();
+
+photo.randomize("weekly")
+     .size(800, 600)
+     .build(); => "https://source.unsplash.com/800x600/random,weekly"
+```
+
 Get a random photo from photographer [Jared Erondu](https://unsplash.com/erondu) cropped to `2048px` x `1200px`, that changes once a day:
 
 ```js
 var photo = new SourcePhoto();
 
-photo.fromUser("erondu")
+photo.all()
+     .fromUser("erondu")
      .width(2048)
      .height(1200)
      .randomize("daily")
