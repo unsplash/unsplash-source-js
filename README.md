@@ -27,7 +27,7 @@ Method | Arguments | Example | Description
 `all`||`photo.all()`|Searches for all photos, instead of just featured photos
 `build`||`photo.build()`|Returns the configured URL.
 
-By default, the photos are filtered to featured photos. To remove this filter, call `all`. We recommend using `all` when limiting photos to a specific keyword (using `of`) or limiting photos to specific photographers (using `fromUser`) to maximize the possiblity of a matching photo.
+By default, the photos are [filtered to featured photos](https://unsplash.com/documentation#get-a-random-photo). To remove this filter, call `all`. We recommend using `all` when limiting photos to a specific keyword (using `of`) or limiting photos to specific photographers (using `fromUser`) to maximize the possiblity of a matching photo.
 
 Resize operations (`width`, `height`, `size`) maintain the aspect ratio of the original photo by cropping if necessary.
 
@@ -50,7 +50,7 @@ var photo = new SourcePhoto();
 
 photo.randomize("weekly")
      .size(800, 600)
-     .build(); => "https://source.unsplash.com/800x600/random,weekly"
+     .build(); // => "https://source.unsplash.com/800x600/random,weekly"
 ```
 
 Get a random photo from photographer [Jared Erondu](https://unsplash.com/erondu) cropped to `2048px` x `1200px`, that changes once a day:
@@ -89,10 +89,10 @@ photo.find("oMpAz-DN-9I")
 
 ## Development
 
-To contribute, make sure Node and NPM are installed. Then:
+To contribute, make sure [Node](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/) are installed. Then:
 
 ```sh
-// git clone
+git clone ..
 
 npm install
 grunt test // => should all pass
@@ -104,5 +104,5 @@ grunt test // => should all pass
 
 grunt build // => creates a bundled version of the script
 
-// git commit
+git commit ..
 ```
