@@ -1,4 +1,4 @@
-/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2015-11-02 
+/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2015-11-04 
 
 $$\   $$\                               $$\                     $$\       
 $$ |  $$ |                              $$ |                    $$ |      
@@ -90,7 +90,7 @@ if (!Array.prototype.forEach) {
     this.url = "https://source.unsplash.com";
     this.dimensions = {};
     this.scope = "featured";
-    this.randomizationInterval = null;
+    this.randomizationInterval = "perRequest";
 
     return this;
   };
@@ -163,7 +163,7 @@ if (!Array.prototype.forEach) {
     if (interval == "daily" || interval == "weekly") {
       this.randomizationInterval = interval;
     } else {
-      this.randomizationInterval = null;
+      this.randomizationInterval = "perRequest";
     }
 
     return this;
@@ -271,15 +271,16 @@ if (!Array.prototype.forEach) {
 
   /**
    * Appends the randomization interval to the URL
-   * @return {[type]} [description]
+   * @param  {Boolean} includeRandomPath include the `/random` path in the URL
+   * @return {String} the photo URL
    */
-  UnsplashPhoto.prototype._appendRandomization = function () {
-    this.url += "/random";
-
-    if (this.randomizationInterval == "daily") {
-      this.url += ",daily";
+  UnsplashPhoto.prototype._appendRandomization = function (includeRandomPath) {
+    if (includeRandomPath && this.randomizationInterval == "perRequest") {
+      this.url += "/random";
+    } else if (this.randomizationInterval == "daily") {
+      this.url += "/daily";
     } else if (this.randomizationInterval == "weekly") {
-      this.url += ",weekly";
+      this.url += "/weekly";
     }
 
     return this.url;
@@ -299,7 +300,7 @@ if (!Array.prototype.forEach) {
       this.url += "/user/" + this.username;
       this._appendScope();
       this._appendDimensions();
-      this._appendRandomization();
+      this._appendRandomization(false);
       this._appendKeywords();
       return this.url;
 
@@ -307,14 +308,14 @@ if (!Array.prototype.forEach) {
       this.url += "/category/" + this.category;
       this._appendScope();
       this._appendDimensions();
-      this._appendRandomization();
+      this._appendRandomization(false);
       this._appendKeywords();
       return this.url;
 
     } else {
       this._appendScope();
       this._appendDimensions();
-      this._appendRandomization();
+      this._appendRandomization(true);
       this._appendKeywords();
       return this.url;
 
