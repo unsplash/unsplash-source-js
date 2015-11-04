@@ -50,7 +50,7 @@ var photo = new UnsplashPhoto();
 
 photo.randomize("weekly")
      .size(800, 600)
-     .fetch(); // => "https://source.unsplash.com/800x600/random,weekly"
+     .fetch(); // => "https://source.unsplash.com/800x600/weekly"
 ```
 
 Get a random photo from photographer [Jared Erondu](https://unsplash.com/erondu) cropped to `2048px` x `1200px`, that changes once a day:
@@ -63,7 +63,7 @@ photo.all()
      .width(2048)
      .height(1200)
      .randomize("daily")
-     .fetch(); // => "https://source.unsplash.com/user/erondu/2048x1200/random,daily"
+     .fetch(); // => "https://source.unsplash.com/user/erondu/2048x1200/daily"
 ```
 
 Get a random nature photo of trees and water from the 'all' feed, cropped to `1000px` x `1200px`:
@@ -75,7 +75,7 @@ photo.all()
      .fromCategory("nature")
      .of(["trees", "water"])
      .size(1000, 1200)
-     .fetch(); // => "https://source.unsplash.com/category/nature/1000x1200/random?trees,water"
+     .fetch(); // => "https://source.unsplash.com/category/nature/1000x1200?trees,water"
 ```
 
 Get a specific photo (the photo ID matches the photo ID from unsplash.com):

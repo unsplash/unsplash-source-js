@@ -6,7 +6,7 @@
     this.url = "https://source.unsplash.com";
     this.dimensions = {};
     this.scope = "featured";
-    this.randomizationInterval = null;
+    this.randomizationInterval = "perRequest";
 
     return this;
   };
@@ -79,7 +79,7 @@
     if (interval == "daily" || interval == "weekly") {
       this.randomizationInterval = interval;
     } else {
-      this.randomizationInterval = null;
+      this.randomizationInterval = "perRequest";
     }
 
     return this;
@@ -187,15 +187,16 @@
 
   /**
    * Appends the randomization interval to the URL
-   * @return {[type]} [description]
+   * @param  {Boolean} includeRandomPath include the `/random` path in the URL
+   * @return {String} the photo URL
    */
-  UnsplashPhoto.prototype._appendRandomization = function () {
-    this.url += "/random";
-
-    if (this.randomizationInterval == "daily") {
-      this.url += ",daily";
+  UnsplashPhoto.prototype._appendRandomization = function (includeRandomPath) {
+    if (includeRandomPath && this.randomizationInterval == "perRequest") {
+      this.url += "/random";
+    } else if (this.randomizationInterval == "daily") {
+      this.url += "/daily";
     } else if (this.randomizationInterval == "weekly") {
-      this.url += ",weekly";
+      this.url += "/weekly";
     }
 
     return this.url;
@@ -215,7 +216,7 @@
       this.url += "/user/" + this.username;
       this._appendScope();
       this._appendDimensions();
-      this._appendRandomization();
+      this._appendRandomization(false);
       this._appendKeywords();
       return this.url;
 
@@ -223,14 +224,14 @@
       this.url += "/category/" + this.category;
       this._appendScope();
       this._appendDimensions();
-      this._appendRandomization();
+      this._appendRandomization(false);
       this._appendKeywords();
       return this.url;
 
     } else {
       this._appendScope();
       this._appendDimensions();
-      this._appendRandomization();
+      this._appendRandomization(true);
       this._appendKeywords();
       return this.url;
 
