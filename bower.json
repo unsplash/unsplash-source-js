@@ -1,0 +1,26 @@
+{
+  "name": "unsplash-source-js",
+  "version": "1.0.0",
+  "homepage": "https://source.unsplash.com/",
+  "authors": [
+    "Unsplash <luke@unsplash.com>"
+  ],
+  "description": "A javascript wrapper for Unsplash Source photos",
+  "main": "dist/unsplash-source.js",
+  "keywords": [
+    "unsplash",
+    "source",
+    "photos",
+    "api",
+    "wrapper",
+    "embed"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
