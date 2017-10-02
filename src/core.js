@@ -142,6 +142,17 @@
   };
 
   /**
+   * Limits photos to a specific collection
+   * @param {String} collectionId
+   * @return {UnsplashPhoto}
+   */
+  UnsplashPhoto.prototype.fromCollection = function (collectionId) {
+    this.collection = collectionId;
+
+    return this;
+  };
+
+  /**
    * Returns true if the photo has dimensions set
    * @return {Boolean}
    */
@@ -228,6 +239,14 @@
       this._appendKeywords();
       return this.url;
 
+    } else if (!!this.collection) {
+      this.url += "/collection/" + this.category;
+      this._appendScope();
+      this._appendDimensions();
+      this._appendRandomization(false);
+      this._appendKeywords();
+      return this.url;
+      
     } else {
       this._appendScope();
       this._appendDimensions();
