@@ -1,4 +1,4 @@
-/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2015-11-04 
+/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2017-10-02 
 
 $$\   $$\                               $$\                     $$\       
 $$ |  $$ |                              $$ |                    $$ |      
@@ -226,6 +226,17 @@ if (!Array.prototype.forEach) {
   };
 
   /**
+   * Limits photos to a specific collection
+   * @param {String} collectionId
+   * @return {UnsplashPhoto}
+   */
+  UnsplashPhoto.prototype.fromCollection = function (collectionId) {
+    this.collection = collectionId;
+
+    return this;
+  };
+
+  /**
    * Returns true if the photo has dimensions set
    * @return {Boolean}
    */
@@ -312,6 +323,14 @@ if (!Array.prototype.forEach) {
       this._appendKeywords();
       return this.url;
 
+    } else if (!!this.collection) {
+      this.url += "/collection/" + this.category;
+      this._appendScope();
+      this._appendDimensions();
+      this._appendRandomization(false);
+      this._appendKeywords();
+      return this.url;
+      
     } else {
       this._appendScope();
       this._appendDimensions();
