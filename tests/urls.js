@@ -259,6 +259,45 @@ describe("UnsplashPhoto", function () {
       });
     });
 
+    describe("returns a random photo from user's likes", function () {
+      var photo;
+
+      beforeEach(function () {
+        photo = new UnsplashPhoto();
+        photo.fromUser("crew");
+        photo.fromLikes();
+      });
+
+      it("", function () {
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/user/crew/likes");
+      });
+
+      it("with dimensions", function () {
+        photo.size(200, 100);
+
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/user/crew/likes/200x100");
+      });
+
+      it("with interval", function () {
+        photo.randomize("weekly");
+
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/user/crew/likes/weekly");
+      });
+
+      it("with keywords", function () {
+        photo.of("dog");
+
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/user/crew/likes?dog");
+      });
+
+
+      it("with scope", function () {
+        photo.all();
+
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/user/crew/likes/all");
+      });
+    });
+
     describe("returns a random photo from a category", function () {
       var photo;
 
