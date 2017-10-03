@@ -1,4 +1,4 @@
-/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2017-10-02 
+/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2017-10-04 
 
 $$\   $$\                               $$\                     $$\       
 $$ |  $$ |                              $$ |                    $$ |      
@@ -215,6 +215,16 @@ if (!Array.prototype.forEach) {
   };
 
   /**
+   * Limits the photos to likes from a specific photographer
+   * @return {UnsplashPhoto}
+   */
+  UnsplashPhoto.prototype.fromLikes = function() {
+    this.likes = true;
+
+    return this;
+  }
+
+  /**
    * Limits the photos to a specific category
    * @param  {String} category
    * @return {UnsplashPhoto}
@@ -309,10 +319,14 @@ if (!Array.prototype.forEach) {
 
     } else if (!!this.username) {
       this.url += "/user/" + this.username;
+      if (!!this.likes) {
+        this.url += "/likes";
+      }
       this._appendScope();
       this._appendDimensions();
       this._appendRandomization(false);
       this._appendKeywords();
+
       return this.url;
 
     } else if (!!this.category) {
@@ -324,7 +338,7 @@ if (!Array.prototype.forEach) {
       return this.url;
 
     } else if (!!this.collection) {
-      this.url += "/collection/" + this.category;
+      this.url += "/collection/" + this.collection;
       this._appendScope();
       this._appendDimensions();
       this._appendRandomization(false);

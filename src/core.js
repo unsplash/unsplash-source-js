@@ -131,6 +131,16 @@
   };
 
   /**
+   * Limits the photos to likes from a specific photographer
+   * @return {UnsplashPhoto}
+   */
+  UnsplashPhoto.prototype.fromLikes = function() {
+    this.likes = true;
+
+    return this;
+  }
+
+  /**
    * Limits the photos to a specific category
    * @param  {String} category
    * @return {UnsplashPhoto}
@@ -225,10 +235,14 @@
 
     } else if (!!this.username) {
       this.url += "/user/" + this.username;
+      if (!!this.likes) {
+        this.url += "/likes";
+      }
       this._appendScope();
       this._appendDimensions();
       this._appendRandomization(false);
       this._appendKeywords();
+
       return this.url;
 
     } else if (!!this.category) {
