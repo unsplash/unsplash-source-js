@@ -296,6 +296,43 @@ describe("UnsplashPhoto", function () {
       });
     });
 
+    describe("returns a random photo from a collection", function () {
+      var photo;
+
+      beforeEach(function () {
+        photo = new UnsplashPhoto();
+        photo.fromCollection("397770");
+      });
+
+      it("", function () {
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/collection/397770");
+      });
+
+      it("with dimensions", function () {
+        photo.size(200, 100);
+
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/collection/397770/200x100");
+      });
+
+      it("with interval", function () {
+        photo.randomize("daily");
+
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/collection/397770/daily");
+      });
+
+      it("with keywords", function () {
+        photo.of("dog");
+
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/collection/397770?dog");
+      });
+
+      it("with scope", function () {
+        photo.all();
+
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/collection/397770/all");
+      });
+    });
+
     describe("returns a random photo", function () {
       var photo;
 

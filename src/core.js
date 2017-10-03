@@ -240,7 +240,7 @@
       return this.url;
 
     } else if (!!this.collection) {
-      this.url += "/collection/" + this.category;
+      this.url += "/collection/" + this.collection;
       this._appendScope();
       this._appendDimensions();
       this._appendRandomization(false);
