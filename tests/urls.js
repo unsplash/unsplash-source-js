@@ -347,7 +347,7 @@ describe("UnsplashPhoto", function () {
       it("with dimensions", function () {
         photo.size(200,100);
 
-        expect(photo.fetch()).toEqual("https://source.unsplash.com/200x100/random");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/200x100");
       });
 
       it("with interval", function () {

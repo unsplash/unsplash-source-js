@@ -250,7 +250,7 @@
     } else {
       this._appendScope();
       this._appendDimensions();
-      this._appendRandomization(true);
+      this._appendRandomization(!this._hasDimensions());
       this._appendKeywords();
       return this.url;
 
