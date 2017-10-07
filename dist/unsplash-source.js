@@ -1,4 +1,4 @@
-/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2017-10-02 
+/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2017-10-08 
 
 $$\   $$\                               $$\                     $$\       
 $$ |  $$ |                              $$ |                    $$ |      
@@ -324,7 +324,7 @@ if (!Array.prototype.forEach) {
       return this.url;
 
     } else if (!!this.collection) {
-      this.url += "/collection/" + this.category;
+      this.url += "/collection/" + this.collection;
       this._appendScope();
       this._appendDimensions();
       this._appendRandomization(false);
@@ -334,7 +334,7 @@ if (!Array.prototype.forEach) {
     } else {
       this._appendScope();
       this._appendDimensions();
-      this._appendRandomization(true);
+      this._appendRandomization(!this._hasDimensions());
       this._appendKeywords();
       return this.url;
 
