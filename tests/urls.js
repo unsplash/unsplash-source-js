@@ -54,13 +54,13 @@ describe("UnsplashPhoto", function () {
     });
   });
 
-  describe("#all", function () {
-    it("sets the scope to all", function () {
+  describe("#featured", function () {
+    it("sets the scope to featured", function () {
       var photo = new UnsplashPhoto();
 
-      photo.all();
+      photo.featured();
 
-      expect(photo.scope).toEqual("all");
+      expect(photo.scope).toEqual("featured");
     });
   });
 
@@ -148,9 +148,9 @@ describe("UnsplashPhoto", function () {
     it("adds the scope to the URL", function () {
       var photo = new UnsplashPhoto();
 
-      photo.all();
+      photo.featured();
 
-      expect(photo._appendScope()).toEqual("https://source.unsplash.com/all");
+      expect(photo._appendScope()).toEqual("https://source.unsplash.com/featured");
     });
   });
 
@@ -253,9 +253,9 @@ describe("UnsplashPhoto", function () {
 
 
       it("with scope", function () {
-        photo.all();
+        photo.featured();
 
-        expect(photo.fetch()).toEqual("https://source.unsplash.com/user/crew/all");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/user/crew/featured");
       });
     });
 
@@ -290,9 +290,9 @@ describe("UnsplashPhoto", function () {
       });
 
       it("with scope", function () {
-        photo.all();
+        photo.featured();
 
-        expect(photo.fetch()).toEqual("https://source.unsplash.com/category/buildings/all");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/category/buildings/featured");
       });
     });
 
@@ -327,9 +327,9 @@ describe("UnsplashPhoto", function () {
       });
 
       it("with scope", function () {
-        photo.all();
+        photo.featured();
 
-        expect(photo.fetch()).toEqual("https://source.unsplash.com/collection/397770/all");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/collection/397770/featured");
       });
     });
 
@@ -363,9 +363,9 @@ describe("UnsplashPhoto", function () {
       });
 
       it("with scope", function () {
-        photo.all();
+        photo.featured();
 
-        expect(photo.fetch()).toEqual("https://source.unsplash.com/all/random");
+        expect(photo.fetch()).toEqual("https://source.unsplash.com/featured/random");
       });
     });
   });

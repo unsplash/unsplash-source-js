@@ -5,7 +5,7 @@
     this.version = "1.0.0";
     this.url = "https://source.unsplash.com";
     this.dimensions = {};
-    this.scope = "featured";
+    this.scope = "all";
     this.randomizationInterval = "perRequest";
 
     return this;
@@ -86,11 +86,11 @@
   };
 
   /**
-   * Sets the scope to `all` (instead of `featured`)
+   * Sets the scope to `featured` (instead of `all`)
    * @return {UnsplashPhoto}
    */
-  UnsplashPhoto.prototype.all = function () {
-    this.scope = "all";
+  UnsplashPhoto.prototype.featured = function () {
+    this.scope = "featured";
 
     return this;
   };
@@ -177,8 +177,8 @@
    * @return {String} the photo URL
    */
   UnsplashPhoto.prototype._appendScope = function () {
-    if (this.scope == "all") {
-      this.url += "/all";
+    if (this.scope == "featured") {
+      this.url += "/featured";
     }
 
     return this.url;

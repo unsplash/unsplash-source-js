@@ -1,4 +1,4 @@
-/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2017-10-02 
+/*! https://unsplash.com unsplash-source-js - v1.0.0 - 2017-10-08 
 
 $$\   $$\                               $$\                     $$\       
 $$ |  $$ |                              $$ |                    $$ |      
@@ -89,7 +89,7 @@ if (!Array.prototype.forEach) {
     this.version = "1.0.0";
     this.url = "https://source.unsplash.com";
     this.dimensions = {};
-    this.scope = "featured";
+    this.scope = "all";
     this.randomizationInterval = "perRequest";
 
     return this;
@@ -170,11 +170,11 @@ if (!Array.prototype.forEach) {
   };
 
   /**
-   * Sets the scope to `all` (instead of `featured`)
+   * Sets the scope to `featured` (instead of `all`)
    * @return {UnsplashPhoto}
    */
-  UnsplashPhoto.prototype.all = function () {
-    this.scope = "all";
+  UnsplashPhoto.prototype.featured = function () {
+    this.scope = "featured";
 
     return this;
   };
@@ -261,8 +261,8 @@ if (!Array.prototype.forEach) {
    * @return {String} the photo URL
    */
   UnsplashPhoto.prototype._appendScope = function () {
-    if (this.scope == "all") {
-      this.url += "/all";
+    if (this.scope == "featured") {
+      this.url += "/featured";
     }
 
     return this.url;
@@ -324,7 +324,7 @@ if (!Array.prototype.forEach) {
       return this.url;
 
     } else if (!!this.collection) {
-      this.url += "/collection/" + this.category;
+      this.url += "/collection/" + this.collection;
       this._appendScope();
       this._appendDimensions();
       this._appendRandomization(false);
